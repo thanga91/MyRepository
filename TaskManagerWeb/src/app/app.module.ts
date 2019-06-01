@@ -1,14 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from "@angular/forms";
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TaskManagerComponent } from './components/task-manager/task-manager.component';
+import { AddTaskComponent } from './components/add-task/add-task.component';
+import { SearchFilter } from './pipes/search-filter';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TaskManagerComponent,
+    AddTaskComponent,
+    SearchFilter
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
