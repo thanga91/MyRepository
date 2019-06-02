@@ -10,11 +10,7 @@ export class TaskManagerServiceService {
   private readonly taskManagerUrl: string = "taskmanager";
 
   getAllTask(){
-    this.apiServiceService.GET(this.taskManagerUrl).subscribe(
-      (response: [{}]) => {
-        return response;       
-      }
-    );
+    return this.apiServiceService.GET(this.taskManagerUrl);
   }
 
   saveTask(task){

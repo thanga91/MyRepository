@@ -40,9 +40,12 @@ export class TaskManagerComponent implements OnInit {
   constructor(private taskManagerServiceService: TaskManagerServiceService) { }
 
   loadTaskList(){
-    let taskListResponse = this.taskManagerServiceService.getAllTask();
-    this.taskList = taskListResponse ? taskListResponse : this.taskList;
-    this.initialTaskList = taskListResponse ? taskListResponse : this.taskList;
+    let taskListResponse = this.taskManagerServiceService.getAllTask().subscribe(
+      (response: [{}]) => {
+        this.taskList = response;
+        this.initialTaskList = response;
+      }
+    );
   }
 
   ngOnInit() {
