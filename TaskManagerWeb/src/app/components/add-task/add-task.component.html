@@ -4,11 +4,13 @@
         <form (ngSubmit)="saveTask()" #addTaskForm="ngForm">
           <div class="form-group">
             <label for="taskName">Task Name:</label>
-            <input type="text" required ="true" class="form-control" id="taskName" [(ngModel)]="newTask.task" placeholder="Enter Task" name="taskName">
+            <input type="text" required ="true" class="form-control" id="taskName" [(ngModel)]="newTask.taskName" placeholder="Enter Task" name="taskName">
           </div>
           <div class="form-group">
-            <label for="parentName">Parent Task Name:</label>
-            <input type="text" required ="true" class="form-control" id="parentName" [(ngModel)]="newTask.parent" placeholder="Enter Parent" name="parentName">
+            <label for="parentName">Parent Task Name:</label>            
+            <select class="custom-select" name="parentName" [(ngModel)]="newTask.parentId">
+              <option *ngFor = "let task of taskList" [value]="task.id">{{task.taskName}}</option>
+            </select>
           </div>   
           <div class="form-group">
             <label for="priority">Priority:</label>
@@ -20,15 +22,15 @@
           </div>   
           <div class="form-group">
             <label for="startDate">Start Date:</label>
-            <input type="date" required ="true" class="form-control" id="startDate" name="startDate" placeholder="Start Date" [(ngModel)]="newTask.start">  
+            <input type="date" required ="true" class="form-control" id="startDate" name="startDate" placeholder="Start Date" [(ngModel)]="newTask.startDate">  
           </div>  
           <div class="form-group">
             <label for="endDate">End Date:</label>
-            <input type="date" required ="true" class="form-control" id="endDate" name="endDate" placeholder="End Date" [(ngModel)]="newTask.end">  
+            <input type="date" required ="true" class="form-control" id="endDate" name="endDate" placeholder="End Date" [(ngModel)]="newTask.endDate">  
           </div>      
            
           <button type="submit" class="btn btn-success" [disabled]="!addTaskForm.valid" type="submit">Submit</button>
-          <button type="submit" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
+          <button type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
         </form>
       </div>
 </div>

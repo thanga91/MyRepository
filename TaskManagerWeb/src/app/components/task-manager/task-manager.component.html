@@ -19,23 +19,23 @@
             <form class="form-inline searchForm" (ngSubmit)="viewTask()" #viewTaskForm="ngForm">
               <div class="col-md-12 form-inline">
                 <label for="taskName" class="col-md-3">TaskName:</label>
-                <input type="text" class="form-control col-md-3" id="taskName">
+                <input type="text" class="form-control col-md-3" id="taskName" name= "taskName" [(ngModel)]="search.taskName" (input)="filterTaskList()">
                 <label for="parentName" class="col-md-3">Parent Name:</label>
-                <input type="text" class="form-control col-md-3" id="parentName">
+                <input type="text" class="form-control col-md-3" id="parentName" name= "parentName" [(ngModel)]="search.parentName" (input)="filterTaskList()">
               </div>
 
               <div class="col-md-12 form-inline topPadding">
                 <div class="col-md-6 form-inline">
                   <label for="priorityFrom" class="col-md-3">Priority From:</label>
-                  <input type="number" min=1 max=30 class="form-control col-md-3" id="priorityFrom">
+                  <input type="number" min=1 max=30 class="form-control col-md-3" id="priorityFrom" name= "priorityFrom" [(ngModel)]="search.priorityFrom" (input)="filterTaskList()">
                   <label for="priorityTo" class="col-md-3">Priority To:</label>
-                  <input type="number"  min=1 max=30 class="form-control col-md-3" id="priorityTo">
+                  <input type="number"  min=1 max=30 class="form-control col-md-3" id="priorityTo" name= "priorityTo" [(ngModel)]="search.priorityTo" (input)="filterTaskList()">
                 </div>
                 <div class="col-md-6 form-inline">
                   <label for="startDate" class="col-md-3">Start Date:</label>
-                  <input type="date" class="form-control col-md-3" id="startDate" name="startDate">
+                  <input type="date" class="form-control col-md-3" id="startDate" name="startDate" [(ngModel)]="search.startDate" (input)="filterTaskList()">
                   <label for="endDate" class="col-md-3">End Date:</label>
-                  <input type="date" class="form-control col-md-3" id="endDate" name="endDate">  
+                  <input type="date" class="form-control col-md-3" id="endDate" name="endDate" [(ngModel)]="search.startDate" (input)="filterTaskList()">
                 </div>
               </div>
             </form>
@@ -54,11 +54,11 @@
               </thead>
               <tbody>
                 <tr *ngFor="let task of taskList">
-                  <td>{{task.task}}</td>
-                  <td>{{task.parent}}</td>
+                  <td>{{task.taskName}}</td>
+                  <td>{{task.parentTaskName}}</td>
                   <td>{{task.priority}}</td>
-                  <td>{{task.start}}</td>
-                  <td>{{task.end}}</td>
+                  <td>{{task.startDate}}</td>
+                  <td>{{task.endDate}}</td>
                   <td>
                     <button type="button" class="btn btn-primary" (click)="editTask(task)">Edit</button>
                     <button type="button" class="btn btn-danger leftMargin" (click)="deleteTask(task)">Delete</button>
@@ -70,7 +70,7 @@
         </div>
       </div>
       <div class="tab-pane fade" id="pills-add" role="tabpanel" aria-labelledby="pills-add-tab">
-          <app-add-task [taskList]="taskList" [task]="task"></app-add-task>
+        <app-add-task [taskList]="taskList" [task]="task"></app-add-task>
       </div>
     </div>
   </div>
