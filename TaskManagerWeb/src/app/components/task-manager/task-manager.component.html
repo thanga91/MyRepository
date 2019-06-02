@@ -1,18 +1,18 @@
 <div class="taskManagerView">
   <div class="container">
-    <h2>Task Manager</h2>
+    <h2>Task Manager </h2>
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
       <li class="nav-item">
-        <a class="nav-link active" id="pills-view-tab" data-toggle="pill" href="#pills-view" role="tab" aria-controls="pills-home"
+        <a class="nav-link" [ngClass]="{ 'active':activeTab==='view'}" (click)="activeTab='view'" id="pills-view-tab" data-toggle="pill" href="#pills-view" role="tab" aria-controls="pills-home"
           aria-selected="true">View</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="pills-add-tab" data-toggle="pill" href="#pills-add" role="tab" aria-controls="pills-add"
+        <a class="nav-link" [ngClass]="{ 'active':activeTab==='add'}" (click)="activeTab='add'" id="pills-add-tab" data-toggle="pill" href="#pills-add" role="tab" aria-controls="pills-add"
           aria-selected="false">Add</a>
       </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
-      <div class="tab-pane fade show active" id="pills-view" role="tabpanel" aria-labelledby="pills-view-tab">
+      <div class="tab-pane fade" [ngClass]="{ 'show active':activeTab==='view'}" id="pills-view" role="tabpanel" aria-labelledby="pills-view-tab">
         <div class="">
           
           <div class="col-md-12 topPadding">
@@ -69,8 +69,8 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="pills-add" role="tabpanel" aria-labelledby="pills-add-tab">
-        <app-add-task [taskList]="taskList" [task]="task"></app-add-task>
+      <div class="tab-pane fade" [ngClass]="{ 'show active':activeTab==='add'}" id="pills-add" role="tabpanel" aria-labelledby="pills-add-tab">
+        <app-add-task [taskList]="taskList" [task]="task" (changeTab)= "changeTab($event)"></app-add-task>
       </div>
     </div>
   </div>

@@ -14,18 +14,10 @@ export class TaskManagerServiceService {
   }
 
   saveTask(task){
-    this.apiServiceService.POST(this.taskManagerUrl, task).subscribe(
-      (response: [{}]) => {
-        return response;       
-      }
-    );
+    return this.apiServiceService.POST(this.taskManagerUrl, task);
   }
 
   deleteTask(id){
-    this.apiServiceService.DELETE(this.taskManagerUrl, id).subscribe(
-      (response: [{}]) => {
-        return response;       
-      }
-    );
+    return this.apiServiceService.DELETE(this.taskManagerUrl, id);
   }
 }

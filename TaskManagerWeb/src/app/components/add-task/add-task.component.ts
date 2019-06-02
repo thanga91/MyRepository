@@ -10,7 +10,8 @@ export class AddTaskComponent implements OnInit {
 
   @Input('taskList') taskList;
   @Input('task') task;
-  
+  @Output('changeTab') changeTab = new EventEmitter();
+
   newTask = {
     taskName: '',
     parentId: 0,
@@ -27,9 +28,14 @@ export class AddTaskComponent implements OnInit {
   }
 
   saveTask(){
-    console.log(this.newTask);
-    this.taskManagerServiceService.saveTask(this.newTask);
+    this.taskManagerServiceService.saveTask(this.newTask).subscribe(
+      (response: [{}]) => {
+        this.reset();
+        this.changeTab.emit("view");
+      }
+    );
   }
+
   reset(){
     this.newTask = {
       taskName: '',

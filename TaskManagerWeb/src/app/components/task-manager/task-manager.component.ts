@@ -36,11 +36,12 @@ export class TaskManagerComponent implements OnInit {
     endDate: '',
   }
   task: object = {}
+  activeTab: String = "view"
 
   constructor(private taskManagerServiceService: TaskManagerServiceService) { }
 
   loadTaskList(){
-    let taskListResponse = this.taskManagerServiceService.getAllTask().subscribe(
+    this.taskManagerServiceService.getAllTask().subscribe(
       (response: [{}]) => {
         this.taskList = response;
         this.initialTaskList = response;
@@ -57,8 +58,18 @@ export class TaskManagerComponent implements OnInit {
   }
 
   deleteTask(task){
-    this.taskManagerServiceService.deleteTask(task.id);
-    this.loadTaskList();
+    this.taskManagerServiceService.deleteTask(task.id).subscribe(
+      (response: [{}]) => {
+        this.loadTaskList();
+      }
+    );
+  }
+
+  changeTab(tabName){
+    this.activeTab = tabName;
+    if(tabName == "view"){
+      this.loadTaskList();
+    }
   }
 
   checkTaskNotExist(id, searchedTask){
