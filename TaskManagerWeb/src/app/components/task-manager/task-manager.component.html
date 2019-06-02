@@ -1,66 +1,77 @@
-<div class="taskManagerView" *ngIf="!addTaskToggle">
+<div class="taskManagerView">
   <div class="container">
     <h2>Task Manager</h2>
-    <div class="col-md-12 topPadding">
-      <form class="form-inline searchForm" (ngSubmit)="viewTask()" #viewTaskForm="ngForm">
-        <div class="col-md-12 form-inline">
-          <label for="taskName" class="col-md-3">TaskName:</label>
-          <input type="text" class="form-control col-md-3" id="taskName">
-          <label for="parentName" class="col-md-3">Parent Name:</label>
-          <input type="text" class="form-control col-md-3" id="parentName">
-        </div>
-        
-        <div class="col-md-12 form-inline topPadding">
-          <div class="col-md-6 form-inline">
-            <label for="priorityFrom" class="col-md-3">Priority From:</label>
-            <input type="text" class="form-control col-md-3" id="priorityFrom">
-            <label for="priorityTo" class="col-md-3">Priority To:</label>
-            <input type="text" class="form-control col-md-3" id="priorityTo">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="pills-view-tab" data-toggle="pill" href="#pills-view" role="tab" aria-controls="pills-home"
+          aria-selected="true">View</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pills-add-tab" data-toggle="pill" href="#pills-add" role="tab" aria-controls="pills-add"
+          aria-selected="false">Add</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-view" role="tabpanel" aria-labelledby="pills-view-tab">
+        <div class="container">
+          
+          <div class="col-md-12 topPadding">
+            <form class="form-inline searchForm" (ngSubmit)="viewTask()" #viewTaskForm="ngForm">
+              <div class="col-md-12 form-inline">
+                <label for="taskName" class="col-md-3">TaskName:</label>
+                <input type="text" class="form-control col-md-3" id="taskName">
+                <label for="parentName" class="col-md-3">Parent Name:</label>
+                <input type="text" class="form-control col-md-3" id="parentName">
+              </div>
+
+              <div class="col-md-12 form-inline topPadding">
+                <div class="col-md-6 form-inline">
+                  <label for="priorityFrom" class="col-md-3">Priority From:</label>
+                  <input type="text" class="form-control col-md-3" id="priorityFrom">
+                  <label for="priorityTo" class="col-md-3">Priority To:</label>
+                  <input type="text" class="form-control col-md-3" id="priorityTo">
+                </div>
+                <div class="col-md-6 form-inline">
+                  <label for="startDate" class="col-md-3">Start Date:</label>
+                  <input type="text" class="form-control col-md-3" id="startDate">
+                  <label for="endDate" class="col-md-3">End Date:</label>
+                  <input type="text" class="form-control col-md-3" id="endDate">
+                </div>
+              </div>
+            </form>
           </div>
-          <div class="col-md-6 form-inline">
-            <label for="startDate" class="col-md-3">Start Date:</label>
-            <input type="text" class="form-control col-md-3" id="startDate">
-            <label for="endDate" class="col-md-3">End Date:</label>
-            <input type="text" class="form-control col-md-3" id="endDate">
+          <div class="col-md-12 topPadding table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Task</th>
+                  <th>Parent</th>
+                  <th>Priority</th>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let task of taskList">
+                  <td>{{task.task}}</td>
+                  <td>{{task.parent}}</td>
+                  <td>{{task.priority}}</td>
+                  <td>{{task.start}}</td>
+                  <td>{{task.end}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary" (click)="editTask(task)">Edit</button>
+                    <button type="button" class="btn btn-danger leftMargin" (click)="deleteTask(task)">Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <div class="offset-md-5 form-inline topPadding">
-          <button type="submit" class=" offset-md-4 btn btn-primary leftMargin " [disabled]="!viewTaskForm.valid" >View</button>
-        </div>
-      </form>
-    </div>
-    <div class="col-md-2 topPadding">
-      <button type="button" class="btn btn-success" (click)="addTask()">Add Task</button>
-    </div>
-    <div class="col-md-12 topPadding table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Task</th>
-            <th>Parent</th>
-            <th>Priority</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let task of taskList">
-            <td>{{task.task}}</td>
-            <td>{{task.parent}}</td>
-            <td>{{task.priority}}</td>
-            <td>{{task.start}}</td>
-            <td>{{task.end}}</td>
-            <td>
-              <button type="button" class="btn btn-primary" (click)="editTask(task)">Edit</button>
-              <button type="button" class="btn btn-danger leftMargin" (click)="deleteTask(task)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      </div>
+      <div class="tab-pane fade" id="pills-add" role="tabpanel" aria-labelledby="pills-add-tab">
+          <app-add-task [taskList]="taskList" [task]="task"></app-add-task>
+      </div>
     </div>
   </div>
-</div>
-<div class="col-md-12" *ngIf="addTaskToggle">
-  <app-add-task [taskList]="taskList" [task]="task" (closeAddTask)="closeAddTask($event)"></app-add-task>
 </div>

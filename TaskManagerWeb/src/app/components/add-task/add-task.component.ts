@@ -9,8 +9,6 @@ export class AddTaskComponent implements OnInit {
 
   @Input('taskList') taskList;
   @Input('task') task;
-
-  @Output('closeAddTask') closeAddTask = new EventEmitter();
   
   newTask = {
     task: "",
@@ -32,7 +30,6 @@ export class AddTaskComponent implements OnInit {
   saveTask(){
     console.log(this.newTask);
   }
-  cancelTaskCreation(){
-    this.closeAddTask.emit(true);
+  reset(){
   } 
 }

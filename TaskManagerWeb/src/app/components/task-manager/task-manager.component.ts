@@ -16,15 +16,10 @@ export class TaskManagerComponent implements OnInit {
       end: '07/06/19',
     }
   ];
-  addTaskToggle: boolean = false;
   task: object = {}
   constructor() { }
 
   ngOnInit() {
-  }
-
-  addTask(){
-    this.addTaskToggle = !this.addTaskToggle;
   }
 
   editTask(task){
@@ -34,13 +29,8 @@ export class TaskManagerComponent implements OnInit {
   deleteTask(task){
     this.task = task;
   }
-
-  closeAddTask(closeAddTask){
-    this.addTaskToggle = !closeAddTask;
-  }
-
   viewTask(){
-    
+
   }
 
 }
