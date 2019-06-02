@@ -13,7 +13,7 @@
     </ul>
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-view" role="tabpanel" aria-labelledby="pills-view-tab">
-        <div class="container">
+        <div class="">
           
           <div class="col-md-12 topPadding">
             <form class="form-inline searchForm" (ngSubmit)="viewTask()" #viewTaskForm="ngForm">
@@ -27,15 +27,15 @@
               <div class="col-md-12 form-inline topPadding">
                 <div class="col-md-6 form-inline">
                   <label for="priorityFrom" class="col-md-3">Priority From:</label>
-                  <input type="text" class="form-control col-md-3" id="priorityFrom">
+                  <input type="number" min=1 max=30 class="form-control col-md-3" id="priorityFrom">
                   <label for="priorityTo" class="col-md-3">Priority To:</label>
-                  <input type="text" class="form-control col-md-3" id="priorityTo">
+                  <input type="number"  min=1 max=30 class="form-control col-md-3" id="priorityTo">
                 </div>
                 <div class="col-md-6 form-inline">
                   <label for="startDate" class="col-md-3">Start Date:</label>
-                  <input type="text" class="form-control col-md-3" id="startDate">
+                  <input type="date" class="form-control col-md-3" id="startDate" name="startDate">
                   <label for="endDate" class="col-md-3">End Date:</label>
-                  <input type="text" class="form-control col-md-3" id="endDate">
+                  <input type="date" class="form-control col-md-3" id="endDate" name="endDate">  
                 </div>
               </div>
             </form>

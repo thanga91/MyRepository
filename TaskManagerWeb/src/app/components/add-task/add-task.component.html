@@ -17,7 +17,16 @@
               min="1" max="30" value="1" class="slider" 
               [(ngModel)]="newTask.priority" id="priority"
               [title]=newTask.priority>
-          </div>        
+          </div>   
+          <div class="form-group">
+            <label for="startDate">Start Date:</label>
+            <input type="date" required ="true" class="form-control" id="startDate" name="startDate" placeholder="Start Date" [(ngModel)]="newTask.start">  
+          </div>  
+          <div class="form-group">
+            <label for="endDate">End Date:</label>
+            <input type="date" required ="true" class="form-control" id="endDate" name="endDate" placeholder="End Date" [(ngModel)]="newTask.end">  
+          </div>      
+           
           <button type="submit" class="btn btn-success" [disabled]="!addTaskForm.valid" type="submit">Submit</button>
           <button type="submit" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
         </form>
