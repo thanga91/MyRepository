@@ -22,11 +22,11 @@
           </div>   
           <div class="form-group">
             <label for="startDate">Start Date:</label>
-            <input type="date" required ="true" class="form-control" id="startDate" name="startDate" placeholder="Start Date" [(ngModel)]="newTask.startDate">  
+            <input type="date" required ="true" class="form-control" id="startDate" name="startDate" placeholder="Start Date" [ngModel]="newTask.startDate | date:'yyyy-MM-dd'" (ngModelChange)="newTask.startDate = $event">  
           </div>  
           <div class="form-group">
             <label for="endDate">End Date:</label>
-            <input type="date" required ="true" class="form-control" id="endDate" name="endDate" placeholder="End Date" [(ngModel)]="newTask.endDate">  
+            <input type="date" required ="true" class="form-control" id="endDate" name="endDate" placeholder="End Date" [ngModel]="newTask.endDate | date:'yyyy-MM-dd'" (ngModelChange)="newTask.endDate = $event">  
           </div>      
            
           <button type="submit" class="btn btn-success" [disabled]="!addTaskForm.valid" type="submit">Submit</button>
