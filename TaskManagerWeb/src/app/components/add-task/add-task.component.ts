@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TaskManagerServiceService } from "../../services/task-manager-service.service";
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
   selector: 'app-add-task',
@@ -8,9 +9,16 @@ import { TaskManagerServiceService } from "../../services/task-manager-service.s
 })
 export class AddTaskComponent implements OnInit {
 
-  @Input('taskList') taskList;
-  @Input('task') task;
+  @Input('taskList') taskList;  
   @Output('changeTab') changeTab = new EventEmitter();
+  @Input() action: string = 'Add';
+
+  @Input() set task(value) {
+    this.reset();
+    if(value) {
+      this.newTask = value;
+    }    
+  }
 
   newTask = {
     taskName: '',
@@ -28,12 +36,22 @@ export class AddTaskComponent implements OnInit {
   }
 
   saveTask(){
-    this.taskManagerServiceService.saveTask(this.newTask).subscribe(
-      (response: [{}]) => {
-        this.reset();
-        this.changeTab.emit("view");
-      }
-    );
+    if(this.action === 'Add') {
+      this.taskManagerServiceService.saveTask(this.newTask).subscribe(
+        (response: [{}]) => {
+          this.reset();
+          this.changeTab.emit("view");
+        }
+      );
+    } else {
+      this.taskManagerServiceService.editTask(this.newTask).subscribe(
+        (response: [{}]) => {
+          this.reset();
+          this.changeTab.emit("view");
+        }
+      );
+    }
+   
   }
 
   reset(){

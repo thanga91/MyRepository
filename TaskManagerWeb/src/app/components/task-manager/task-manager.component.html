@@ -7,8 +7,12 @@
           aria-selected="true">View</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{ 'active':activeTab==='add'}" (click)="activeTab='add'" id="pills-add-tab" data-toggle="pill" href="#pills-add" role="tab" aria-controls="pills-add"
+        <a class="nav-link" [ngClass]="{ 'active':activeTab==='add', 'hide':activeTab ==='edit'}" (click)="addTask()" id="pills-add-tab" data-toggle="pill" href="#pills-add" role="tab" aria-controls="pills-add"
           aria-selected="false">Add</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{ 'active':activeTab==='edit', 'hide':activeTab !=='edit'}" (click)="activeTab='edit'" id="pills-edit-tab" data-toggle="pill" href="#pills-edit" role="tab" aria-controls="pills-edit"
+          aria-selected="false">Edit</a>
       </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
@@ -57,8 +61,8 @@
                   <td>{{task.taskName}}</td>
                   <td>{{task.parentTaskName}}</td>
                   <td>{{task.priority}}</td>
-                  <td>{{task.startDate}}</td>
-                  <td>{{task.endDate}}</td>
+                  <td>{{task.startDate | date:'dd/MM/yyyy'}}</td>
+                  <td>{{task.endDate | date:'dd/MM/yyyy'}}</td>
                   <td>
                     <button type="button" class="btn btn-primary" (click)="editTask(task)">Edit</button>
                     <button type="button" class="btn btn-danger leftMargin" (click)="deleteTask(task)">Delete</button>
@@ -70,7 +74,10 @@
         </div>
       </div>
       <div class="tab-pane fade" [ngClass]="{ 'show active':activeTab==='add'}" id="pills-add" role="tabpanel" aria-labelledby="pills-add-tab">
-        <app-add-task [taskList]="taskList" [task]="task" (changeTab)= "changeTab($event)"></app-add-task>
+        <app-add-task [taskList]="taskList" [task]="task" (changeTab)= "changeTab($event)" action="Add"></app-add-task>
+      </div>
+      <div class="tab-pane fade" [ngClass]="{ 'show active':activeTab==='edit'}" id="pills-edit" role="tabpanel" aria-labelledby="pills-add-tab">
+        <app-add-task [taskList]="taskList" [task]="task" (changeTab)= "changeTab($event)" action="Edit"></app-add-task>
       </div>
     </div>
   </div>

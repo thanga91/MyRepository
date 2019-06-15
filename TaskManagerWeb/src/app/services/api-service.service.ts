@@ -23,8 +23,12 @@ export class ApiServiceService {
   POST(url, data){
     return this.httpClient.post(this.repositoryURL + url, data , this.httpOptions);
   }
+  
+  PUT(url, data){
+    return this.httpClient.put(this.repositoryURL + url, data , this.httpOptions);
+  }
 
   DELETE(url, id){
-    return this.httpClient.post(this.repositoryURL + url +"/" + id + "/", this.httpOptions);
+    return this.httpClient.delete(this.repositoryURL + url +"/" + id + "/", this.httpOptions);
   }
 }

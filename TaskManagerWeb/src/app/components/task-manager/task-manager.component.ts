@@ -35,7 +35,7 @@ export class TaskManagerComponent implements OnInit {
     startDate: '',
     endDate: '',
   }
-  task: object = {}
+  task: object = null;
   activeTab: String = "view"
 
   constructor(private taskManagerServiceService: TaskManagerServiceService) { }
@@ -55,6 +55,12 @@ export class TaskManagerComponent implements OnInit {
 
   editTask(task){
     this.task = task;
+    this.changeTab("edit");
+  }
+
+  addTask(){
+    this.task = null;
+    this.changeTab("add");
   }
 
   deleteTask(task){

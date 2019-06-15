@@ -17,6 +17,10 @@ export class TaskManagerServiceService {
     return this.apiServiceService.POST(this.taskManagerUrl, task);
   }
 
+  editTask(task){
+    return this.apiServiceService.PUT(this.taskManagerUrl, task);
+  }
+
   deleteTask(id){
     return this.apiServiceService.DELETE(this.taskManagerUrl, id);
   }
