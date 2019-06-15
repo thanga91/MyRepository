@@ -20,6 +20,10 @@ export class AddTaskComponent implements OnInit {
     }    
   }
 
+  get showResetButton() {
+    return this.action === 'Add';
+  }
+
   newTask = {
     taskName: '',
     parentId: 0,

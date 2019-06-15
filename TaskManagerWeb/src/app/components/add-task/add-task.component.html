@@ -9,7 +9,9 @@
           <div class="form-group">
             <label for="parentName">Parent Task Name:</label>            
             <select class="custom-select" name="parentName" [(ngModel)]="newTask.parentId">
-              <option *ngFor = "let task of taskList" [value]="task.id">{{task.taskName}}</option>
+              <ng-container *ngFor = "let task of taskList">
+                  <option *ngIf="!(newTask && newTask.id === task.id)" [value]="task.id">{{task.taskName}}</option>
+              </ng-container>
             </select>
           </div>   
           <div class="form-group">
@@ -30,7 +32,7 @@
           </div>      
            
           <button type="submit" class="btn btn-success" [disabled]="!addTaskForm.valid" type="submit">Submit</button>
-          <button type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
+          <button *ngIf="showResetButton" type="button" class="btn btn-primary leftMargin" (click)="reset()">Reset</button>
         </form>
       </div>
 </div>
